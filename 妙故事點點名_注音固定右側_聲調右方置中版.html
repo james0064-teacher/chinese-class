@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>妙故事點點名｜插畫互動課文（自閉友善版）</title>
+<style>
+:root{
+  --bg:#fff8f2;
+  --paper:#ffffff;
+  --ink:#3f382f;
+  --sub:#74695e;
+  --line:#eadfce;
+  --pink:#ffb7c5;
+  --pink2:#ff8fa8;
+  --blue:#a8dcff;
+  --blue2:#6db8ef;
+  --mint:#b8efd8;
+  --mint2:#62c08f;
+  --yellow:#ffe59a;
+  --yellow2:#f4c957;
+  --lav:#d7c6ff;
+  --lav2:#9577de;
+  --orange:#ffc79f;
+  --orange2:#ef9367;
+  --good:#5cb988;
+  --bad:#d06b6b;
+  --shadow:0 10px 28px rgba(82,72,58,.12);
+  --ui:"PingFang TC","Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;
+  --kai:"DFKai-SB","BiauKai","標楷體","Kaiti TC","楷體-繁","STKaiti","KaiTi",serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--ui);
+  background:
+    radial-gradient(circle at 8% 10%, #fff 0 48px, transparent 48px),
+    radial-gradient(circle at 92% 16%, #fff 0 60px, transparent 60px),
+    linear-gradient(180deg,#fff9f1 0%,#fff3fa 55%,#eef9ff 100%);
+  color:var(--ink);
+  padding:14px;
+}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.wrap{max-width:980px;margin:0 auto}
+.app{
+  background:rgba(255,255,255,.9);
+  border:1px solid rgba(255,255,255,.8);
+  border-radius:28px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.topbar{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:10px 16px;background:#fffdfb;border-bottom:1px solid var(--line)
+}
+.topbar strong{font-size:15px}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.mini{
+  border:2px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;
+  color:#5f554a;font-weight:800
+}
+.mini.active{background:#eef8ff;border-color:#addcff;color:#357fb5}
+.hero{
+  padding:24px 20px 18px;
+  background:linear-gradient(180deg,#fffefc 0%,#fff9ee 100%);
+  border-bottom:1px solid var(--line)
+}
+.hero-grid{display:grid;grid-template-columns:320px 1fr;gap:20px;align-items:center}
+.mascot-card{
+  background:linear-gradient(145deg,#fff2f6,#fefcff);
+  border:2px solid #ffd8e2;border-radius:24px;padding:18px;position:relative;min-height:220px
+}
+.mascot-card svg{width:100%;height:100%}
+.title-card{
+  background:#fff;border:2px solid var(--line);border-radius:24px;padding:20px
+}
+.title{
+  font-size:clamp(28px,4vw,42px);margin:0 0 8px;letter-spacing:1px
+}
+.sub{color:var(--sub);line-height:1.8;margin:0 0 14px}
+.badges{display:flex;gap:8px;flex-wrap:wrap}
+.badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:#fff7da;border:2px solid #f7db79;border-radius:999px;padding:7px 12px;font-weight:900;color:#7a6120
+}
+.schedule{
+  display:grid;grid-template-columns:repeat(7,1fr);gap:10px;padding:16px 18px;background:#f9fcff;border-bottom:1px solid var(--line)
+}
+.step{
+  background:#fff;border:2px solid #e4edf5;border-radius:18px;padding:12px 8px;text-align:center;font-weight:900;color:#5d6670
+}
+.step .ico{display:block;font-size:25px;margin-bottom:4px}
+.step.on{background:#eef8ff;border-color:#addbff;color:#2f7db5}
+.status{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px 18px;background:#f9fcff
+}
+.stat{
+  background:#fff;border:2px solid #e3edf4;border-radius:18px;padding:10px;text-align:center
+}
+.stat small{display:block;color:var(--sub);margin-bottom:5px}
+.stat span{font-size:22px;font-weight:1000}
+nav{
+  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:14px;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)
+}
+.tab{
+  border:2px solid var(--line);background:#fffdf8;border-radius:999px;padding:10px 14px;font-weight:900;color:#5f5448
+}
+.tab.active{background:#ffb8c6;border-color:#ff92aa;color:#7e3145}
+main{padding:20px}
+.view{display:none}
+.view.active{display:block}
+.card{
+  background:#fff;border:2px solid var(--line);border-radius:24px;padding:20px;margin-bottom:18px;box-shadow:0 6px 18px rgba(90,80,60,.05)
+}
+.card h2,.card h3{margin-top:0}
+.label{
+  display:inline-block;background:#eef8ff;border:2px solid #b8dfff;color:#337eb4;font-size:12px;font-weight:1000;padding:5px 11px;border-radius:999px;margin-bottom:8px
+}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.menu-btn{
+  border:2px solid #eadfd0;border-radius:22px;padding:16px;text-align:left;background:linear-gradient(180deg,#fff 0%,#fffdfa 100%);
+  min-height:132px;display:flex;flex-direction:column;justify-content:space-between
+}
+.menu-btn .icon{
+  width:52px;height:52px;border-radius:15px;display:grid;place-items:center;font-size:28px;margin-bottom:6px
+}
+.menu-btn b{display:block;font-size:18px;margin-bottom:5px}
+.menu-btn span{display:block;color:var(--sub);line-height:1.6;font-size:13px}
+.icon.pink{background:#ffe0e8}
+.icon.blue{background:#e0f2ff}
+.icon.mint{background:#ddfaee}
+.icon.yellow{background:#fff2c8}
+.icon.lav{background:#eee7ff}
+.icon.orange{background:#ffe5d6}
+
+.first-then{
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;margin-top:16px
+}
+.ft{
+  border:2px dashed #d8e4eb;border-radius:18px;padding:14px;text-align:center;background:#fff
+}
+.ft b{display:block;font-size:18px}
+.illustration{
+  background:linear-gradient(180deg,#fef7ff 0%,#f5fbff 100%);
+  border:2px solid #e6def6;border-radius:22px;padding:16px;text-align:center
+}
+.illustration svg{width:100%;max-width:430px;height:auto}
+
+.word-layout{
+  display:grid;grid-template-columns:1.1fr .95fr;gap:18px;align-items:start
+}
+.big-card{
+  background:linear-gradient(180deg,#fffefc 0%,#fff7fb 100%);
+  border:2px solid #f1e0e9;border-radius:24px;padding:18px
+}
+.word-main{
+  font-family:var(--kai);font-size:104px;text-align:center;line-height:1;margin:8px 0 10px;color:#7b5740
+}
+.zhuyin{
+  text-align:center;font-size:28px;font-weight:1000;color:#e16d8e;margin:0 0 8px
+}
+.pill{
+  display:inline-block;padding:6px 11px;border-radius:999px;font-size:12px;font-weight:1000
+}
+.pill.write{background:#fff4d2;border:2px solid #f7d05c;color:#81621b}
+.pill.read{background:#eef8ff;border:2px solid #bde1ff;color:#2e7bb0}
+.meta{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0
+}
+.meta .m{
+  background:#fff;border:2px solid #eee3d5;border-radius:16px;padding:10px;text-align:center
+}
+.meta .m strong{display:block;font-size:20px;font-family:var(--kai)}
+.words{
+  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px
+}
+.words span{
+  background:#f7fbff;border:2px solid #d8e9f6;border-radius:999px;padding:7px 12px;font-weight:900
+}
+.controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.btn{
+  border:none;border-radius:14px;padding:12px 18px;font-weight:1000;box-shadow:0 4px 0 rgba(0,0,0,.11)
+}
+.btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.1)}
+.btn.blue{background:var(--blue2);color:#fff}
+.btn.pink{background:var(--pink2);color:#fff}
+.btn.mint{background:var(--mint2);color:#fff}
+.btn.yellow{background:var(--yellow2);color:#6a5517}
+.btn.ghost{background:#fff;border:2px solid #e8dccd;color:#5d5247;box-shadow:none}
+.progress{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;color:var(--sub);font-weight:800
+}
+.dotbar{display:flex;gap:5px;flex:1}
+.dotbar i{height:10px;flex:1;border-radius:999px;background:#ece6df}
+.dotbar i.on{background:#ffb7c5}
+.dotbar i.done{background:#9fdfa9}
+
+.vocab-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:14px
+}
+.vocab{
+  background:#fff;border:2px solid #eadfd0;border-radius:20px;overflow:hidden
+}
+.vocab .pic{
+  background:linear-gradient(180deg,#fef7fb 0%,#f0f9ff 100%);
+  border-bottom:2px dashed #eddfe7;
+  min-height:145px;display:grid;place-items:center;padding:10px
+}
+.vocab .pic svg{width:100%;height:120px}
+.vocab .info{padding:14px}
+.vocab .char{font-family:var(--kai);font-size:40px;font-weight:700}
+.vocab .bp{color:#d46887;font-weight:900}
+.vocab .word{color:#5b544d;margin-top:4px;font-weight:800}
+.vocab .tag{
+  display:inline-block;margin-top:8px;background:#fff4d2;border:2px solid #f1d16b;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:900;color:#7e6420
+}
+.reading-box{
+  background:#fffdf8;border:2px dashed #e6d8c7;border-radius:20px;padding:16px
+}
+textarea{
+  width:100%;min-height:180px;border:2px solid #e6d8c7;border-radius:18px;padding:14px;background:#fff;font-size:18px;line-height:1.9;color:#4c443c
+}
+textarea:focus{outline:3px solid rgba(109,184,239,.25)}
+.story-line{
+  font-family:var(--kai);font-size:36px;line-height:1.9;text-align:center;background:#fff;border:2px solid #efe3d6;border-radius:18px;padding:18px;min-height:140px
+}
+.story-line .key{color:#cb607f;font-weight:700}
+.story-line .read{color:#cc8f2d}
+.story-line .sel{background:#ffefb6;border-radius:8px;padding:0 2px}
+.center{text-align:center}
+.note{font-size:14px;color:var(--sub);line-height:1.8}
+.opts{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px
+}
+.opt{
+  border:2px solid #eadfd0;border-radius:18px;padding:14px;background:#fff;font-size:22px;font-family:var(--kai);font-weight:700;min-height:76px
+}
+.opt.right{background:#ebfff4;border-color:#b5ebcb}
+.opt.wrong{background:#fff0f0;border-color:#e9b8b8}
+.feedback{
+  display:none;margin-top:14px;padding:14px;border-radius:16px;font-weight:900
+}
+.feedback.show{display:block}
+.feedback.ok{background:#ebfff4;color:#2e7a57}
+.feedback.no{background:#fff0f0;color:#a24e4e}
+.quiz-q{
+  font-size:24px;font-weight:1000;text-align:center;margin-bottom:10px
+}
+.breakbox{
+  background:#f7fcff;border:2px solid #d6e9f7;border-radius:22px;padding:18px;text-align:center
+}
+.breathe{
+  width:94px;height:94px;border-radius:50%;margin:8px auto;background:#dff1ff;display:grid;place-items:center;font-size:42px;animation:breathe 4s ease-in-out infinite
+}
+@keyframes breathe{
+  0%,100%{transform:scale(.92)}
+  50%{transform:scale(1.08)}
+}
+footer{padding:18px;text-align:center;color:var(--sub);font-size:13px;border-top:1px solid var(--line)}
+
+@media (max-width:900px){
+  .hero-grid,.word-layout{grid-template-columns:1fr}
+  .menu-grid,.vocab-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  body{padding:0}
+  .app{border-radius:0;min-height:100vh}
+  .schedule,.status{grid-template-columns:repeat(2,1fr)}
+  .menu-grid,.vocab-grid,.opts,.meta{grid-template-columns:1fr}
+  .first-then{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+
+.lesson-switch{
+  display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:12px 0 16px
+}
+.lesson-switch button{
+  border:2px solid #eadfd0;background:#fff;border-radius:999px;padding:9px 14px;
+  font-weight:900;color:#5f5448
+}
+.lesson-switch button.on{
+  background:#ffedf2;border-color:#ffabc0;color:#8b4054
+}
+.lesson-text{
+  background:#fffdf9;border:2px solid #eadfd0;border-radius:22px;padding:20px;
+  font-family:var(--kai);font-size:22px;line-height:2.1;letter-spacing:1px
+}
+.lesson-text p{margin:0 0 16px;text-indent:2em}
+.lesson-text p:last-child{margin-bottom:0}
+.lesson-text .key{color:#c95b7a;font-weight:700;background:#fff0f4;border-radius:5px;padding:0 2px}
+.lesson-text .read{color:#c48721;font-weight:700;background:#fff7dc;border-radius:5px;padding:0 2px}
+.lesson-note{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px
+}
+.lesson-note div{
+  background:#f8fbfd;border:2px solid #e0ebf1;border-radius:15px;padding:11px;text-align:center;font-size:13px;color:#5f6870
+}
+.lesson-note b{display:block;color:#3e4b54;margin-bottom:3px}
+@media(max-width:640px){.lesson-note{grid-template-columns:1fr}}
+
+
+/* =========================================================
+   國小課本式直排注音
+   固定三欄：漢字｜注音｜聲調
+   注音永遠在國字右方；聲調永遠在注音右方且垂直置中
+   ========================================================= */
+.zy{
+  display:inline-grid;
+  grid-template-columns:1em .58em .38em;
+  grid-template-rows:1fr;
+  align-items:center;
+  justify-items:center;
+  vertical-align:middle;
+  width:1.96em;
+  min-width:1.96em;
+  max-width:1.96em;
+  min-height:1.55em;
+  margin:0 .025em;
+  padding:0;
+  white-space:nowrap;
+  text-indent:0;
+}
+.zy .rb{
+  grid-column:1;
+  grid-row:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:1em;
+  min-width:1em;
+  height:1.55em;
+  line-height:1.55em;
+  text-align:center;
+}
+.zy .rt{
+  display:contents;
+}
+.zy .ph{
+  grid-column:2;
+  grid-row:1;
+  align-self:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  width:.58em;
+  min-width:.58em;
+  min-height:1.55em;
+  font-family:"BopomofoRuby1909","BopomofoRuby","PingFang TC","Microsoft JhengHei",sans-serif;
+  font-size:.39em;
+  line-height:.82;
+  letter-spacing:0;
+  color:#75675d;
+  text-align:center;
+}
+.zy .ph > span{
+  display:block;
+  width:100%;
+  height:.82em;
+  line-height:.82em;
+  text-align:center;
+}
+.zy .tone{
+  grid-column:3;
+  grid-row:1;
+  align-self:center;
+  justify-self:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:.38em;
+  min-width:.38em;
+  height:1.55em;
+  min-height:1.55em;
+  font-family:"PingFang TC","Microsoft JhengHei",sans-serif;
+  font-size:.39em;
+  line-height:1;
+  color:#75675d;
+  text-align:center;
+}
+.zy .tone:empty::after{
+  content:"";
+  display:block;
+  width:.38em;
+  height:1px;
+}
+.lesson-text .zy .rb.key{
+  color:#c95b7a;
+  font-weight:700;
+  background:#fff0f4;
+  border-radius:5px;
+}
+.lesson-text .zy .rb.read{
+  color:#c48721;
+  font-weight:700;
+  background:#fff7dc;
+  border-radius:5px;
+}
+.lesson-text p{
+  margin:0 0 18px;
+  padding-left:2em;
+  text-indent:0 !important;
+  line-height:2.15;
+}
+.lesson-text p:last-child{margin-bottom:0}
+@media(max-width:640px){
+  .lesson-text{
+    font-size:21px;
+    line-height:2.2;
+    padding:15px 12px;
+  }
+  .zy{
+    grid-template-columns:1em .60em .40em;
+    width:2em;
+    min-width:2em;
+    max-width:2em;
+  }
+  .zy .ph{
+    width:.60em;
+    min-width:.60em;
+    font-size:.40em;
+  }
+  .zy .tone{
+    width:.40em;
+    min-width:.40em;
+    font-size:.40em;
+  }
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="app">
+    <div class="topbar">
+      <strong>🌼 妙故事點點名｜同一學生專用互動課文</strong>
+      <div class="row">
+        <button class="mini" id="soundBtn">🔊 聲音：開</button>
+        <button class="mini" id="breakBtn">🌿 休息一下</button>
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="mascot-card" aria-hidden="true">
+          <svg viewBox="0 0 260 210">
+            <rect x="0" y="0" width="260" height="210" rx="24" fill="#fff9fc"/>
+            <ellipse cx="130" cy="177" rx="95" ry="16" fill="#f8d9e2"/>
+            <circle cx="74" cy="55" r="18" fill="#fff"/>
+            <circle cx="196" cy="42" r="14" fill="#fff"/>
+            <circle cx="110" cy="97" r="42" fill="#fff7f8" stroke="#ffc9d5" stroke-width="3"/>
+            <ellipse cx="92" cy="53" rx="14" ry="32" fill="#fff7f8" stroke="#ffc9d5" stroke-width="3" transform="rotate(-12 92 53)"/>
+            <ellipse cx="129" cy="50" rx="14" ry="34" fill="#fff7f8" stroke="#ffc9d5" stroke-width="3" transform="rotate(10 129 50)"/>
+            <ellipse cx="92" cy="59" rx="7" ry="21" fill="#ffd6df" transform="rotate(-12 92 59)"/>
+            <ellipse cx="129" cy="56" rx="7" ry="22" fill="#ffd6df" transform="rotate(10 129 56)"/>
+            <circle cx="98" cy="94" r="5" fill="#6d5f53"/>
+            <circle cx="122" cy="94" r="5" fill="#6d5f53"/>
+            <ellipse cx="110" cy="107" rx="6.5" ry="5" fill="#ff9bb3"/>
+            <path d="M104 114 Q110 120 116 114" fill="none" stroke="#9c6a76" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="84" cy="102" r="6" fill="#ffd8e2"/>
+            <circle cx="137" cy="102" r="6" fill="#ffd8e2"/>
+            <rect x="152" y="108" width="68" height="48" rx="10" fill="#a8dcff" stroke="#6db8ef" stroke-width="3"/>
+            <rect x="160" y="118" width="52" height="30" rx="6" fill="#fff"/>
+            <text x="186" y="138" text-anchor="middle" font-size="22" font-family="DFKai-SB, KaiTi, serif" fill="#6d5f53">妙</text>
+            <circle cx="180" cy="172" r="22" fill="#ffe69b" stroke="#f4c957" stroke-width="3"/>
+            <path d="M180 154 L186 167 L201 169 L190 179 L193 194 L180 187 L167 194 L170 179 L159 169 L174 167 Z" fill="#fff7da"/>
+          </svg>
+        </div>
+        <div class="title-card">
+          <h1 class="title">妙故事點點名</h1>
+          <p class="sub">這是一份為同一位學生設計的插畫互動課文。畫面維持可愛、穩定、可預期；一次只做一小步，並加入可以按讀音的圖像生字卡，幫助孩子主動參與。</p>
+          <div class="badges">
+            <span class="badge">🐰 可愛插畫</span>
+            <span class="badge">🧩 自閉友善</span>
+            <span class="badge">🔊 可唸讀音</span>
+            <span class="badge">🖼️ 生字圖卡</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="schedule" id="schedule">
+      <div class="step on" data-step="home"><span class="ico">🏠</span>先看任務</div>
+      <div class="step" data-step="intro"><span class="ico">📖</span>故事導讀</div>
+      <div class="step" data-step="lesson"><span class="ico">📚</span>課文閱讀</div>
+      <div class="step" data-step="cards"><span class="ico">🪄</span>生字圖卡</div>
+      <div class="step" data-step="gallery"><span class="ico">🖼️</span>圖卡總覽</div>
+      <div class="step" data-step="idiom"><span class="ico">🌈</span>詞語理解</div>
+      <div class="step" data-step="quiz"><span class="ico">⭐</span>小挑戰</div>
+    </section>
+
+    <section class="status">
+      <div class="stat"><small>⭐ 星星</small><span id="stars">0</span></div>
+      <div class="stat"><small>✅ 完成題數</small><span id="done">0</span></div>
+      <div class="stat"><small>🔥 連續答對</small><span id="streak">0</span></div>
+      <div class="stat"><small>🪄 看過圖卡</small><span id="viewed">0</span></div>
+    </section>
+
+    <nav>
+      <button class="tab active" data-view="home">首頁</button>
+      <button class="tab" data-view="intro">故事導讀</button>
+      <button class="tab" data-view="lesson">課文閱讀</button>
+      <button class="tab" data-view="cards">生字圖卡</button>
+      <button class="tab" data-view="gallery">圖卡總覽</button>
+      <button class="tab" data-view="read">朗讀室</button>
+      <button class="tab" data-view="idiom">詞語理解</button>
+      <button class="tab" data-view="quiz">小挑戰</button>
+    </nav>
+
+    <main id="main"></main>
+    <footer>單一 HTML 檔，可直接放入 GitHub Pages 或 Netlify 使用。</footer>
+  </div>
+</div>
+
+<script>
+const NEW_WORDS=[
+ {c:"窗",b:"ㄔㄨㄤ", r:"穴",o:7, t:12,w:["窗戶","窗外"], p:"穴＋囪", type:"write"},
+ {c:"戶",b:"ㄏㄨˋ",  r:"戶",o:0, t:4, w:["窗戶","門戶"], p:"獨體字", type:"write"},
+ {c:"名",b:"ㄇㄧㄥˊ",r:"口",o:3, t:6, w:["點名","名字"], p:"夕＋口", type:"write"},
+ {c:"板",b:"ㄅㄢˇ",  r:"木",o:4, t:8, w:["黑板","木板"], p:"木＋反", type:"write"},
+ {c:"答",b:"ㄉㄚˊ",  r:"竹",o:6, t:12,w:["答案","回答"], p:"⺮＋合", type:"write"},
+ {c:"案",b:"ㄢˋ",    r:"木",o:6, t:10,w:["答案","方案"], p:"安＋木", type:"write"},
+ {c:"專",b:"ㄓㄨㄢ", r:"寸",o:8, t:11,w:["專心","專門"], p:"叀＋寸", type:"write"},
+ {c:"穫",b:"ㄏㄨㄛˋ",r:"禾",o:14,t:19,w:["收穫"], p:"禾＋蒦", type:"write"},
+ {c:"賽",b:"ㄙㄞˋ",  r:"貝",o:10,t:17,w:["比賽","賽跑"], p:"塞上半＋貝", type:"write"},
+ {c:"已",b:"ㄧˇ",    r:"己",o:0, t:3, w:["已經","而已"], p:"獨體字", type:"write"},
+ {c:"傘",b:"ㄙㄢˇ",  r:"人",o:10,t:12,w:["雨傘","傘下"], p:"象形字", type:"write"},
+ {c:"似",b:"ㄙˋ",    r:"人",o:5, t:7, w:["相似","類似"], p:"亻＋以", type:"write"},
+ {c:"追",b:"ㄓㄨㄟ", r:"辵",o:6, t:10,w:["追上","追趕"], p:"辶＋𠂤", type:"write"},
+ {c:"喊",b:"ㄏㄢˇ",  r:"口",o:9, t:12,w:["喊叫","大喊"], p:"口＋咸", type:"write"}
+];
+const READ_WORDS=[
+ {c:"歪",b:"ㄨㄞ", w:["歪打正著"], type:"read"},
+ {c:"霧",b:"ㄨˋ", w:["霧裡看花"], type:"read"},
+ {c:"晃",b:"ㄏㄨㄤˋ", w:["晃動"], type:"read"},
+ {c:"亂",b:"ㄌㄨㄢˋ", w:["手忙腳亂"], type:"read"}
+];
+const ALL_WORDS = NEW_WORDS.concat(READ_WORDS);
+
+// 修正：原本 KEYSET 誤把「認讀字」也算進去，且宣告位置在下方，
+// 導致 zy()／r() 在建立課文陣列時就已經呼叫到尚未初始化的 KEYSET，
+// 並用到根本沒宣告過的 READSET，整頁 JS 一開始就報錯、畫面完全空白。
+// 這裡提前宣告，並依「習寫生字／認讀字」正確分成兩個集合。
+const KEYSET = new Set(NEW_WORDS.map(x=>x.c));   // 習寫生字（課文中標粉紅色）
+const READSET = new Set(READ_WORDS.map(x=>x.c)); // 認讀字（課文中標橙黃色）
+const BPMAP = {};
+ALL_WORDS.forEach(x=>BPMAP[x.c]=x.b);
+
+const IDIOMS=[
+ {w:"歪打正著",b:"ㄨㄞ ㄉㄚˇ ㄓㄥˋ ㄓㄠˊ",mean:"本來做錯了，結果卻剛好對了。",scene:"按錯按鈕，卻剛好找到正確頁面。"},
+ {w:"霧裡看花",b:"ㄨˋ ㄌㄧˇ ㄎㄢˋ ㄏㄨㄚ",mean:"看不清楚，也弄不明白。",scene:"老師剛講完，我還是有點搞不懂。"},
+ {w:"手忙腳亂",b:"ㄕㄡˇ ㄇㄤˊ ㄐㄧㄠˇ ㄌㄨㄢˋ",mean:"很著急，不知道該先做什麼。",scene:"快遲到了，一邊穿鞋、一邊找書包。"},
+ {w:"一馬當先",b:"ㄧ ㄇㄚˇ ㄉㄤ ㄒㄧㄢ",mean:"跑在最前面，帶頭做事。",scene:"比賽一開始，他就衝在最前面。"}
+];
+
+const YIJI=[
+ {q:"已經",a:"已", tip:"念 ㄧˇ，表示事情完成了。"},
+ {q:"自己",a:"己", tip:"念 ㄐㄧˇ，表示自己。"},
+ {q:"而已",a:"已", tip:"「而已」是只是這樣的意思。"},
+ {q:"知己",a:"己", tip:"知己是很了解自己的朋友。"}
+];
+
+
+const ORIGINAL_PARAGRAPHS = [
+  "以樂最近經常看著窗戶外面，因為那裡有棵大樹，常常有小鳥飛過去。有一次上課，老師發現他正看著外面，就對他說：「以樂，請你說一說『霧裡看花』是什麼意思？」",
+  "聽到老師點名叫他，以樂緊張的站起來，雖然他張大了眼睛看著黑板，可是怎麼也找不到答案。最後，只好不好意思的低著頭，小聲的說：「我……我……看不清楚。」",
+  "老師說：「這次你說對了，不過，你老是看窗外是不行的，上課要專心一點，才能有收穫。」",
+  "有一天下著大雨，王叔叔加班到很晚才下班，他一坐上公車，就趕緊找位子坐下。",
+  "因為太累了，他一下子就睡著，還夢見自己參加短跑比賽。一馬當先的他，眼看著終點就在眼前……這時，車子突然一陣晃動，當他驚醒時，發現已經到站了。",
+  "王叔叔手忙腳亂，慌慌張張的抓起雨傘，飛也似的下車，沒想到有一位先生跟在後面，一邊追一邊大聲喊叫：「那是我的雨傘，快還來！」"
+];
+
+const SIMPLE_PARAGRAPHS = [
+  "以樂坐在教室裡，常常看著窗戶外面。窗外有大樹和小鳥。",
+  "老師點名叫以樂回答。以樂看著黑板，卻找不到答案。他小聲說：「我看不清楚。」",
+  "老師告訴他：「上課要專心，認真學習才會有收穫。」",
+  "一天晚上，王叔叔加班後坐上公車。他很累，很快就睡著了。",
+  "王叔叔夢見自己參加比賽。他跑得像飛也似的，一馬當先，快要到終點了。",
+  "公車忽然晃動。王叔叔醒來，發現已經到站。他手忙腳亂，抓起一把雨傘就下車。",
+  "一位先生在後面追，大聲喊：「那是我的雨傘，快還來！」王叔叔回頭一看，才知道自己拿錯了。",
+  "這兩個妙故事提醒我們：上課要專心，遇到事情也要先看清楚，再回答、再行動。"
+];
+
+const ORIGINAL_TEXT = ORIGINAL_PARAGRAPHS.join("\n");
+const SIMPLE_TEXT = SIMPLE_PARAGRAPHS.join("\n");
+let lessonMode = "original";
+
+function splitBp(s){
+  s = (s || "").trim();
+  if(!s) return {body:"", tone:""};
+  const toneChars = "ˊˇˋ˙";
+  const tone = toneChars.includes(s.slice(-1)) ? s.slice(-1) : "";
+  const body = tone ? s.slice(0, -1) : s;
+  return {body, tone};
+}
+function zy(ch, bp){
+  const cls = KEYSET.has(ch) ? "key" : (READSET.has(ch) ? "read" : "");
+  const sp = splitBp(bp);
+  const bodyHtml = [...sp.body].map(x=>`<span>${esc(x)}</span>`).join("");
+  const toneHtml = sp.tone ? esc(sp.tone) : "";
+  return `<span class="zy" aria-label="${esc(ch)} ${esc(bp)}"><span class="rb ${cls}">${esc(ch)}</span><span class="rt"><span class="ph">${bodyHtml}</span><span class="tone">${toneHtml}</span></span></span>`;
+}
+function r(text, bpString){
+  const chars = [...text];
+  const bps = bpString.trim().split(/\s+/);
+  return chars.map((ch, i)=>zy(ch, bps[i] || "")).join("");
+}
+const ORIGINAL_PARAGRAPHS_HTML = [
+  [
+    r("以樂","ㄧˇ ㄌㄜˋ"), r("最近","ㄗㄨㄟˋ ㄐㄧㄣˋ"), r("經常","ㄐㄧㄥ ㄔㄤˊ"), r("看著","ㄎㄢˋ ㄓㄜ˙"),
+    r("窗戶","ㄔㄨㄤ ㄏㄨˋ"), r("外面","ㄨㄞˋ ㄇㄧㄢˋ"), "，", r("因為","ㄧㄣ ㄨㄟˋ"), r("那裡","ㄋㄚˋ ㄌㄧˇ"),
+    r("有","ㄧㄡˇ"), r("棵","ㄎㄜ"), r("大樹","ㄉㄚˋ ㄕㄨˋ"), "，", r("常常","ㄔㄤˊ ㄔㄤˊ"), r("有","ㄧㄡˇ"),
+    r("小鳥","ㄒㄧㄠˇ ㄋㄧㄠˇ"), r("飛過去","ㄈㄟ ㄍㄨㄛˋ ㄑㄩˋ"), "。", r("有一次","ㄧㄡˇ ㄧˊ ㄘˋ"),
+    r("上課","ㄕㄤˋ ㄎㄜˋ"), "，", r("老師","ㄌㄠˇ ㄕ"), r("發現","ㄈㄚ ㄒㄧㄢˋ"), r("他","ㄊㄚ"),
+    r("正","ㄓㄥˋ"), r("看著","ㄎㄢˋ ㄓㄜ˙"), r("外面","ㄨㄞˋ ㄇㄧㄢˋ"), "，", r("就","ㄐㄧㄡˋ"),
+    r("對他說","ㄉㄨㄟˋ ㄊㄚ ㄕㄨㄛ"), "：", "「", r("以樂","ㄧˇ ㄌㄜˋ"), "，", r("請你","ㄑㄧㄥˇ ㄋㄧˇ"),
+    r("說一說","ㄕㄨㄛ ㄧˋ ㄕㄨㄛ"), "『", r("霧裡看花","ㄨˋ ㄌㄧˇ ㄎㄢˋ ㄏㄨㄚ"), "』",
+    r("是","ㄕˋ"), r("什麼意思","ㄕㄣˊ ㄇㄜ ㄧˋ ㄙˋ"), "？", "」"
+  ].join(""),
+  [
+    r("聽到","ㄊㄧㄥ ㄉㄠˋ"), r("老師","ㄌㄠˇ ㄕ"), r("點名","ㄉㄧㄢˇ ㄇㄧㄥˊ"), r("叫他","ㄐㄧㄠˋ ㄊㄚ"), "，",
+    r("以樂","ㄧˇ ㄌㄜˋ"), r("緊張的","ㄐㄧㄣˇ ㄓㄤ ㄉㄜ˙"), r("站起來","ㄓㄢˋ ㄑㄧˇ ㄌㄞˊ"), "，",
+    r("雖然","ㄙㄨㄟ ㄖㄢˊ"), r("他","ㄊㄚ"), r("張大了","ㄓㄤ ㄉㄚˋ ㄌㄜ˙"), r("眼睛","ㄧㄢˇ ㄐㄧㄥ"),
+    r("看著","ㄎㄢˋ ㄓㄜ˙"), r("黑板","ㄏㄟ ㄅㄢˇ"), "，", r("可是","ㄎㄜˇ ㄕˋ"), r("怎麼","ㄗㄣˇ ㄇㄜ"),
+    r("也","ㄧㄝˇ"), r("找不到","ㄓㄠˇ ㄅㄨˋ ㄉㄠˋ"), r("答案","ㄉㄚˊ ㄢˋ"), "。", r("最後","ㄗㄨㄟˋ ㄏㄡˋ"),
+    "，", r("只好","ㄓˇ ㄏㄠˇ"), r("不好意思的","ㄅㄨˋ ㄏㄠˇ ㄧˋ ㄙ˙ ㄉㄜ˙"), r("低著頭","ㄉㄧ ㄓㄜ˙ ㄊㄡˊ"),
+    "，", r("小聲的","ㄒㄧㄠˇ ㄕㄥ ㄉㄜ˙"), r("說","ㄕㄨㄛ"), "：", "「", r("我","ㄨㄛˇ"), "……", r("我","ㄨㄛˇ"),
+    "……", r("看不清楚","ㄎㄢˋ ㄅㄨˋ ㄑㄧㄥ ㄔㄨˇ"), "。", "」"
+  ].join(""),
+  [
+    r("老師","ㄌㄠˇ ㄕ"), r("說","ㄕㄨㄛ"), "：", "「", r("這次","ㄓㄜˋ ㄘˋ"), r("你","ㄋㄧˇ"), r("說對了","ㄕㄨㄛ ㄉㄨㄟˋ ㄌㄜ˙"),
+    "，", r("不過","ㄅㄨˋ ㄍㄨㄛˋ"), "，", r("你","ㄋㄧˇ"), r("老是","ㄌㄠˇ ㄕˋ"), r("看窗外","ㄎㄢˋ ㄔㄨㄤ ㄨㄞˋ"),
+    r("是","ㄕˋ"), r("不行的","ㄅㄨˋ ㄒㄧㄥˊ ㄉㄜ˙"), "，", r("上課","ㄕㄤˋ ㄎㄜˋ"), r("要","ㄧㄠˋ"),
+    r("專心","ㄓㄨㄢ ㄒㄧㄣ"), r("一點","ㄧˋ ㄉㄧㄢˇ"), "，", r("才能","ㄘㄞˊ ㄋㄥˊ"), r("有","ㄧㄡˇ"),
+    r("收穫","ㄕㄡ ㄏㄨㄛˋ"), "。", "」"
+  ].join(""),
+  [
+    r("有一天","ㄧㄡˇ ㄧˋ ㄊㄧㄢ"), "，", r("下著大雨","ㄒㄧㄚˋ ㄓㄜ˙ ㄉㄚˋ ㄩˇ"), "，",
+    r("王叔叔","ㄨㄤˊ ㄕㄨˊ ㄕㄨ˙"), r("加班","ㄐㄧㄚ ㄅㄢ"), r("到","ㄉㄠˋ"), r("很晚","ㄏㄣˇ ㄨㄢˇ"),
+    r("才","ㄘㄞˊ"), r("下班","ㄒㄧㄚˋ ㄅㄢ"), "，", r("他","ㄊㄚ"), r("一坐上公車","ㄧˊ ㄗㄨㄛˋ ㄕㄤˋ ㄍㄨㄥ ㄔㄜ"),
+    "，", r("就","ㄐㄧㄡˋ"), r("趕緊","ㄍㄢˇ ㄐㄧㄣˇ"), r("找位子","ㄓㄠˇ ㄨㄟˋ ㄗ˙"), r("坐下","ㄗㄨㄛˋ ㄒㄧㄚˋ"), "。"
+  ].join(""),
+  [
+    r("因為","ㄧㄣ ㄨㄟˋ"), r("太累了","ㄊㄞˋ ㄌㄟˋ ㄌㄜ˙"), "，", r("他","ㄊㄚ"), r("一下子","ㄧˊ ㄒㄧㄚˋ ㄗ˙"),
+    r("就","ㄐㄧㄡˋ"), r("睡著","ㄕㄨㄟˋ ㄓㄠˊ"), "，", r("還","ㄏㄞˊ"), r("夢見","ㄇㄥˋ ㄐㄧㄢˋ"),
+    r("自己","ㄗˋ ㄐㄧˇ"), r("參加","ㄘㄢ ㄐㄧㄚ"), r("短跑比賽","ㄉㄨㄢˇ ㄆㄠˇ ㄅㄧˇ ㄙㄞˋ"), "。",
+    r("一馬當先","ㄧˋ ㄇㄚˇ ㄉㄤ ㄒㄧㄢ"), r("的","ㄉㄜ˙"), r("他","ㄊㄚ"), "，", r("眼看著","ㄧㄢˇ ㄎㄢˋ ㄓㄜ˙"),
+    r("終點","ㄓㄨㄥ ㄉㄧㄢˇ"), r("就","ㄐㄧㄡˋ"), r("在","ㄗㄞˋ"), r("眼前","ㄧㄢˇ ㄑㄧㄢˊ"), "……",
+    r("這時","ㄓㄜˋ ㄕˊ"), "，", r("車子","ㄔㄜ ㄗ˙"), r("突然","ㄊㄨˊ ㄖㄢˊ"), r("一陣","ㄧˊ ㄓㄣˋ"),
+    r("晃動","ㄏㄨㄤˋ ㄉㄨㄥˋ"), "，", r("當他驚醒時","ㄉㄤ ㄊㄚ ㄐㄧㄥ ㄒㄧㄥˇ ㄕˊ"), "，",
+    r("發現","ㄈㄚ ㄒㄧㄢˋ"), r("已經","ㄧˇ ㄐㄧㄥ"), r("到站了","ㄉㄠˋ ㄓㄢˋ ㄌㄜ˙"), "。"
+  ].join(""),
+  [
+    r("王叔叔","ㄨㄤˊ ㄕㄨˊ ㄕㄨ˙"), r("手忙腳亂","ㄕㄡˇ ㄇㄤˊ ㄐㄧㄠˇ ㄌㄨㄢˋ"), "，", r("慌慌張張","ㄏㄨㄤ ㄏㄨㄤ ㄓㄤ ㄓㄤ"),
+    r("的","ㄉㄜ˙"), r("抓起","ㄓㄨㄚ ㄑㄧˇ"), r("雨傘","ㄩˇ ㄙㄢˇ"), "，", r("飛也似的","ㄈㄟ ㄧㄝˇ ㄕˋ ㄉㄜ˙"),
+    r("下車","ㄒㄧㄚˋ ㄔㄜ"), "，", r("沒想到","ㄇㄟˊ ㄒㄧㄤˇ ㄉㄠˋ"), r("有","ㄧㄡˇ"), r("一位","ㄧˊ ㄨㄟˋ"),
+    r("先生","ㄒㄧㄢ ㄕㄥ"), r("跟在後面","ㄍㄣ ㄗㄞˋ ㄏㄡˋ ㄇㄧㄢˋ"), "，", r("一邊追","ㄧˋ ㄅㄧㄢ ㄓㄨㄟ"),
+    r("一邊","ㄧˋ ㄅㄧㄢ"), r("大聲","ㄉㄚˋ ㄕㄥ"), r("喊叫","ㄏㄢˇ ㄐㄧㄠˋ"), "：", "「",
+    r("那是我的雨傘","ㄋㄚˋ ㄕˋ ㄨㄛˇ ㄉㄜ˙ ㄩˇ ㄙㄢˇ"), "，", r("快還來","ㄎㄨㄞˋ ㄏㄨㄢˊ ㄌㄞˊ"), "！", "」"
+  ].join("")
+];
+
+const SIMPLE_PARAGRAPHS_HTML = [
+  [
+    r("以樂","ㄧˇ ㄌㄜˋ"), r("坐在","ㄗㄨㄛˋ ㄗㄞˋ"), r("教室裡","ㄐㄧㄠˋ ㄕˋ ㄌㄧˇ"), "，",
+    r("常常","ㄔㄤˊ ㄔㄤˊ"), r("看著","ㄎㄢˋ ㄓㄜ˙"), r("窗戶","ㄔㄨㄤ ㄏㄨˋ"), r("外面","ㄨㄞˋ ㄇㄧㄢˋ"), "。",
+    r("窗外","ㄔㄨㄤ ㄨㄞˋ"), r("有","ㄧㄡˇ"), r("大樹","ㄉㄚˋ ㄕㄨˋ"), r("和","ㄏㄢˋ"), r("小鳥","ㄒㄧㄠˇ ㄋㄧㄠˇ"), "。"
+  ].join(""),
+  [
+    r("老師","ㄌㄠˇ ㄕ"), r("點名","ㄉㄧㄢˇ ㄇㄧㄥˊ"), r("叫","ㄐㄧㄠˋ"), r("以樂","ㄧˇ ㄌㄜˋ"), r("回答","ㄏㄨㄟˊ ㄉㄚˊ"), "。",
+    r("以樂","ㄧˇ ㄌㄜˋ"), r("看著","ㄎㄢˋ ㄓㄜ˙"), r("黑板","ㄏㄟ ㄅㄢˇ"), "，", r("卻","ㄑㄩㄝˋ"),
+    r("找不到","ㄓㄠˇ ㄅㄨˋ ㄉㄠˋ"), r("答案","ㄉㄚˊ ㄢˋ"), "。", r("他","ㄊㄚ"), r("小聲","ㄒㄧㄠˇ ㄕㄥ"),
+    r("說","ㄕㄨㄛ"), "：", "「", r("我","ㄨㄛˇ"), r("看不清楚","ㄎㄢˋ ㄅㄨˋ ㄑㄧㄥ ㄔㄨˇ"), "。", "」"
+  ].join(""),
+  [
+    r("老師","ㄌㄠˇ ㄕ"), r("告訴","ㄍㄠˋ ㄙㄨˋ"), r("他","ㄊㄚ"), "：", "「", r("上課","ㄕㄤˋ ㄎㄜˋ"),
+    r("要","ㄧㄠˋ"), r("專心","ㄓㄨㄢ ㄒㄧㄣ"), "，", r("認真","ㄖㄣˋ ㄓㄣ"), r("學習","ㄒㄩㄝˊ ㄒㄧˊ"),
+    r("才","ㄘㄞˊ"), r("會","ㄏㄨㄟˋ"), r("有","ㄧㄡˇ"), r("收穫","ㄕㄡ ㄏㄨㄛˋ"), "。", "」"
+  ].join(""),
+  [
+    r("一天","ㄧˋ ㄊㄧㄢ"), r("晚上","ㄨㄢˇ ㄕㄤˋ"), "，", r("王叔叔","ㄨㄤˊ ㄕㄨˊ ㄕㄨ˙"),
+    r("加班後","ㄐㄧㄚ ㄅㄢ ㄏㄡˋ"), r("坐上","ㄗㄨㄛˋ ㄕㄤˋ"), r("公車","ㄍㄨㄥ ㄔㄜ"), "。",
+    r("他","ㄊㄚ"), r("很累","ㄏㄣˇ ㄌㄟˋ"), "，", r("很快","ㄏㄣˇ ㄎㄨㄞˋ"), r("就","ㄐㄧㄡˋ"),
+    r("睡著了","ㄕㄨㄟˋ ㄓㄠˊ ㄌㄜ˙"), "。"
+  ].join(""),
+  [
+    r("王叔叔","ㄨㄤˊ ㄕㄨˊ ㄕㄨ˙"), r("夢見","ㄇㄥˋ ㄐㄧㄢˋ"), r("自己","ㄗˋ ㄐㄧˇ"),
+    r("參加","ㄘㄢ ㄐㄧㄚ"), r("比賽","ㄅㄧˇ ㄙㄞˋ"), "。", r("他","ㄊㄚ"), r("跑得","ㄆㄠˇ ㄉㄜˊ"),
+    r("像","ㄒㄧㄤˋ"), r("飛也似的","ㄈㄟ ㄧㄝˇ ㄕˋ ㄉㄜ˙"), "，", r("一馬當先","ㄧˋ ㄇㄚˇ ㄉㄤ ㄒㄧㄢ"),
+    "，", r("快要","ㄎㄨㄞˋ ㄧㄠˋ"), r("到","ㄉㄠˋ"), r("終點了","ㄓㄨㄥ ㄉㄧㄢˇ ㄌㄜ˙"), "。"
+  ].join(""),
+  [
+    r("公車","ㄍㄨㄥ ㄔㄜ"), r("忽然","ㄏㄨ ㄖㄢˊ"), r("晃動","ㄏㄨㄤˋ ㄉㄨㄥˋ"), "。",
+    r("王叔叔","ㄨㄤˊ ㄕㄨˊ ㄕㄨ˙"), r("醒來","ㄒㄧㄥˇ ㄌㄞˊ"), "，", r("發現","ㄈㄚ ㄒㄧㄢˋ"),
+    r("已經","ㄧˇ ㄐㄧㄥ"), r("到站","ㄉㄠˋ ㄓㄢˋ"), "。", r("他","ㄊㄚ"), r("手忙腳亂","ㄕㄡˇ ㄇㄤˊ ㄐㄧㄠˇ ㄌㄨㄢˋ"),
+    "，", r("抓起","ㄓㄨㄚ ㄑㄧˇ"), r("一把","ㄧˋ ㄅㄚˇ"), r("雨傘","ㄩˇ ㄙㄢˇ"), r("就","ㄐㄧㄡˋ"), r("下車","ㄒㄧㄚˋ ㄔㄜ"), "。"
+  ].join(""),
+  [
+    r("一位","ㄧˊ ㄨㄟˋ"), r("先生","ㄒㄧㄢ ㄕㄥ"), r("在","ㄗㄞˋ"), r("後面","ㄏㄡˋ ㄇㄧㄢˋ"), r("追","ㄓㄨㄟ"),
+    "，", r("大聲","ㄉㄚˋ ㄕㄥ"), r("喊","ㄏㄢˇ"), "：", "「", r("那是","ㄋㄚˋ ㄕˋ"), r("我的","ㄨㄛˇ ㄉㄜ˙"),
+    r("雨傘","ㄩˇ ㄙㄢˇ"), "，", r("快還來","ㄎㄨㄞˋ ㄏㄨㄢˊ ㄌㄞˊ"), "！", "」",
+    r("王叔叔","ㄨㄤˊ ㄕㄨˊ ㄕㄨ˙"), r("回頭","ㄏㄨㄟˊ ㄊㄡˊ"), r("一看","ㄧˊ ㄎㄢˋ"), "，",
+    r("才","ㄘㄞˊ"), r("知道","ㄓ ㄉㄠˋ"), r("自己","ㄗˋ ㄐㄧˇ"), r("拿錯了","ㄋㄚˊ ㄘㄨㄛˋ ㄌㄜ˙"), "。"
+  ].join(""),
+  [
+    r("這","ㄓㄜˋ"), r("兩個","ㄌㄧㄤˇ ㄍㄜ˙"), r("妙故事","ㄇㄧㄠˋ ㄍㄨˋ ㄕˋ"), r("提醒","ㄊㄧˊ ㄒㄧㄥˇ"), r("我們","ㄨㄛˇ ㄇㄣ˙"),
+    "：", r("上課","ㄕㄤˋ ㄎㄜˋ"), r("要","ㄧㄠˋ"), r("專心","ㄓㄨㄢ ㄒㄧㄣ"), "，",
+    r("遇到","ㄩˋ ㄉㄠˋ"), r("事情","ㄕˋ ㄑㄧㄥˊ"), r("也","ㄧㄝˇ"), r("要","ㄧㄠˋ"), r("先","ㄒㄧㄢ"),
+    r("看清楚","ㄎㄢˋ ㄑㄧㄥ ㄔㄨˇ"), "，", r("再","ㄗㄞˋ"), r("回答","ㄏㄨㄟˊ ㄉㄚˊ"), "，",
+    r("再","ㄗㄞˋ"), r("行動","ㄒㄧㄥˊ ㄉㄨㄥˋ"), "。"
+  ].join("")
+];
+
+let soundOn = true;
+let stars=0, done=0, streak=0;
+let viewed = new Set();
+let currentView = 'home';
+let cardIndex = 0;
+let idiomIndex = 0;
+let quizIndex = 0;
+let quizScore = 0;
+const quizTotal = 8;
+let storyLines = ORIGINAL_PARAGRAPHS.slice();
+
+const main = document.getElementById('main');
+const starsEl = document.getElementById('stars');
+const doneEl = document.getElementById('done');
+const streakEl = document.getElementById('streak');
+const viewedEl = document.getElementById('viewed');
+
+document.getElementById('soundBtn').onclick = ()=>{
+  soundOn=!soundOn;
+  document.getElementById('soundBtn').textContent = soundOn ? '🔊 聲音：開' : '🔇 聲音：關';
+  if(!soundOn && 'speechSynthesis' in window) speechSynthesis.cancel();
+};
+document.getElementById('breakBtn').onclick = ()=> openBreak();
+
+document.querySelectorAll('.tab').forEach(btn=>{
+  btn.onclick=()=> showView(btn.dataset.view);
+});
+
+// 逐句朗讀：用事件委派處理課文字元點擊，避免自訂課文含引號時把 onclick 弄壞
+main.addEventListener('click', e=>{
+  const el = e.target.closest('.story-line span[data-ch]');
+  if(el) showChar(el.dataset.ch, el);
+});
+
+// 鍵盤可操作：圖卡總覽的卡片是 role="button" 的 div，補上 Enter / 空白鍵支援
+main.addEventListener('keydown', e=>{
+  if(e.key!=='Enter' && e.key!==' ') return;
+  const el = e.target.closest('[role="button"]');
+  if(el){ e.preventDefault(); el.click(); }
+});
+
+function updateStatus(){
+  starsEl.textContent = stars;
+  doneEl.textContent = done;
+  streakEl.textContent = streak;
+  viewedEl.textContent = viewed.size;
+}
+
+function reward(ok=true){
+  if(ok){
+    stars += 1;
+    done += 1;
+    streak += 1;
+    playSuccess();
+  }else{
+    streak = 0;
+    playFail();
+  }
+  updateStatus();
+}
+
+function esc(s=''){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function speak(t){
+  if(!soundOn || !('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(t);
+  u.lang='zh-TW';
+  u.rate=.88;
+  speechSynthesis.speak(u);
+}
+
+let audioCtx;
+function tone(freq,type='triangle',duration=.18){
+  if(!soundOn)return;
+  try{
+    audioCtx=audioCtx||new(window.AudioContext||window.webkitAudioContext)();
+    const osc=audioCtx.createOscillator(), gain=audioCtx.createGain();
+    osc.type=type; osc.frequency.value=freq;
+    gain.gain.setValueAtTime(.12,audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(.0001,audioCtx.currentTime+duration);
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.start(); osc.stop(audioCtx.currentTime+duration);
+  }catch(e){}
+}
+function playSuccess(){tone(587);setTimeout(()=>tone(784,'triangle',.28),140)}
+function playFail(){tone(220,'sine',.2)}
+
+function setSchedule(id){
+  document.querySelectorAll('.step').forEach(el=>el.classList.toggle('on', el.dataset.step===id || (id==='read' && el.dataset.step==='intro')));
+  document.querySelectorAll('.tab').forEach(el=>el.classList.toggle('active', el.dataset.view===id));
+  currentView=id;
+}
+function showView(id){
+  setSchedule(id);
+  if(id==='home') return renderHome();
+  if(id==='intro') return renderIntro();
+  if(id==='lesson') return renderLesson(lessonMode);
+  if(id==='cards') return renderCard(cardIndex);
+  if(id==='gallery') return renderGallery();
+  if(id==='read') return renderRead();
+  if(id==='idiom') return renderIdiom(idiomIndex);
+  if(id==='quiz') return startQuiz();
+}
+
+function openBreak(){
+  main.innerHTML = `
+  <section class="view active">
+    <div class="card breakbox">
+      <h2>🌿 休息一下</h2>
+      <p class="note">可以看著圓圓的小芽，慢慢吸氣，再慢慢吐氣。準備好再回去就可以了。</p>
+      <div class="breathe">🌱</div>
+      <div class="controls">
+        <button class="btn mint" onclick="showView('${currentView}')">我準備好了</button>
+      </div>
+    </div>
+  </section>`;
+}
+
+function renderHome(){
+  main.innerHTML = `
+  <section class="view active">
+    <div class="card">
+      <span class="label">今天怎麼做</span>
+      <h2>🌟 先看任務，再開始學習</h2>
+      <div class="first-then">
+        <div class="ft">先做<br><b>看故事、認生字</b></div>
+        <div style="text-align:center;font-size:26px">➡️</div>
+        <div class="ft">再做<br><b>小挑戰、拿星星</b></div>
+      </div>
+      <div class="controls">
+        <button class="btn blue" onclick="showView('intro')">開始學習</button>
+        <button class="btn yellow" onclick="speak('先看故事，再讀課文，再看生字圖卡，最後做小挑戰。')">🔊 聽任務</button>
+      </div>
+    </div>
+
+    <div class="illustration">
+      <svg viewBox="0 0 500 240" aria-hidden="true">
+        <rect x="0" y="0" width="500" height="240" rx="22" fill="#fff9ef"/>
+        <rect x="0" y="168" width="500" height="72" fill="#ddf6ea"/>
+        <circle cx="80" cy="58" r="20" fill="#fff"/>
+        <circle cx="130" cy="58" r="14" fill="#fff"/>
+        <circle cx="385" cy="48" r="18" fill="#fff"/>
+        <rect x="280" y="74" width="120" height="80" rx="10" fill="#a8dcff" stroke="#6db8ef" stroke-width="4"/>
+        <line x1="340" y1="74" x2="340" y2="154" stroke="#6db8ef" stroke-width="4"/>
+        <line x1="280" y1="114" x2="400" y2="114" stroke="#6db8ef" stroke-width="4"/>
+        <rect x="72" y="90" width="70" height="90" rx="8" fill="#9d6845"/>
+        <circle cx="130" cy="135" r="5" fill="#ffd98a"/>
+        <circle cx="188" cy="150" r="36" fill="#fff7f8" stroke="#ffc9d5" stroke-width="4"/>
+        <ellipse cx="170" cy="112" rx="11" ry="28" fill="#fff7f8" stroke="#ffc9d5" stroke-width="4" transform="rotate(-10 170 112)"/>
+        <ellipse cx="199" cy="110" rx="11" ry="30" fill="#fff7f8" stroke="#ffc9d5" stroke-width="4" transform="rotate(10 199 110)"/>
+        <ellipse cx="170" cy="117" rx="5" ry="18" fill="#ffd6df" transform="rotate(-10 170 117)"/>
+        <ellipse cx="199" cy="114" rx="5" ry="18" fill="#ffd6df" transform="rotate(10 199 114)"/>
+        <circle cx="179" cy="148" r="4" fill="#695b50"/>
+        <circle cx="198" cy="148" r="4" fill="#695b50"/>
+        <ellipse cx="188" cy="157" rx="5" ry="4" fill="#ff9bb3"/>
+        <path d="M183 164 Q188 168 193 164" fill="none" stroke="#a3757f" stroke-width="3" stroke-linecap="round"/>
+        <rect x="214" y="129" width="80" height="58" rx="12" fill="#ffe59a" stroke="#f4c957" stroke-width="4"/>
+        <text x="254" y="163" text-anchor="middle" font-size="28" font-family="DFKai-SB, KaiTi, serif" fill="#665447">故事</text>
+        <path d="M420 176 q12-24 24 0 q12-24 24 0" fill="none" stroke="#62c08f" stroke-width="5" stroke-linecap="round"/>
+        <path d="M440 176 v-24" stroke="#62c08f" stroke-width="5" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="card">
+      <span class="label">功能選單</span>
+      <div class="menu-grid">
+        <button class="menu-btn" onclick="showView('intro')">
+          <div class="icon pink">📖</div>
+          <div><b>故事導讀</b><span>先認識這一課有哪兩個故事。</span></div>
+        </button>
+        <button class="menu-btn" onclick="showView('lesson')">
+          <div class="icon blue">📚</div>
+          <div><b>課文閱讀</b><span>可以切換課本原文與簡化版課文。</span></div>
+        </button>
+        <button class="menu-btn" onclick="showView('cards')">
+          <div class="icon blue">🪄</div>
+          <div><b>生字圖卡</b><span>一張一張看，搭配可愛小插畫。</span></div>
+        </button>
+        <button class="menu-btn" onclick="showView('gallery')">
+          <div class="icon mint">🖼️</div>
+          <div><b>圖卡總覽</b><span>把所有生字卡一起排出來看。</span></div>
+        </button>
+        <button class="menu-btn" onclick="showView('read')">
+          <div class="icon yellow">🔊</div>
+          <div><b>朗讀室</b><span>貼上課文，一句一句朗讀。</span></div>
+        </button>
+        <button class="menu-btn" onclick="showView('idiom')">
+          <div class="icon lav">🌈</div>
+          <div><b>詞語理解</b><span>認識四字詞語與生活例子。</span></div>
+        </button>
+        <button class="menu-btn" onclick="showView('quiz')">
+          <div class="icon orange">⭐</div>
+          <div><b>小挑戰</b><span>做 8 題練習，看看今天學了多少。</span></div>
+        </button>
+      </div>
+    </div>
+  </section>`;
+}
+
+function renderIntro(){
+  main.innerHTML = `
+  <section class="view active">
+    <div class="card">
+      <span class="label">故事導讀</span>
+      <h2>📖 這一課有兩個小故事</h2>
+      <p class="note">一個故事發生在教室裡，和老師點名、同學回答有關；另一個故事發生在公車上。等一下，我們會透過生字、詞語和朗讀，把故事一步一步讀懂。</p>
+      <div class="illustration">${introScene()}</div>
+      <div class="controls">
+        <button class="btn blue" onclick="speak('這一課有兩個小故事，一個發生在教室，一個發生在公車上。')">🔊 唸給我聽</button>
+        <button class="btn pink" onclick="showView('lesson')">下一步：讀課文</button>
+      </div>
+    </div>
+  </section>`;
+}
+
+
+function renderLesson(mode="original"){
+  lessonMode=mode;
+  const paras = mode==="original" ? ORIGINAL_PARAGRAPHS : SIMPLE_PARAGRAPHS;
+  const parasHtml = mode==="original" ? ORIGINAL_PARAGRAPHS_HTML : SIMPLE_PARAGRAPHS_HTML;
+  const title = mode==="original" ? "課本原文（附注音）" : "簡化版課文（附注音）";
+  const desc = mode==="original"
+    ? "保留課本故事內容，並加入注音。注音在字的右邊，音調放在最右側的置中位置。"
+    : "句子較短、事件順序更直接，同時保留本課重要生字與核心情節，也加上注音。";
+
+  main.innerHTML = `
+  <section class="view active">
+    <div class="card">
+      <span class="label">課文閱讀</span>
+      <h2>📚 ${title}</h2>
+      <p class="note">${desc}</p>
+
+      <div class="lesson-switch">
+        <button class="${mode==="original"?"on":""}" onclick="renderLesson('original')">📖 課本原文</button>
+        <button class="${mode==="simple"?"on":""}" onclick="renderLesson('simple')">🌱 簡化版</button>
+      </div>
+
+      <div class="lesson-text">
+        ${parasHtml.map(p=>`<p>${p}</p>`).join("")}
+      </div>
+
+      <div class="lesson-note">
+        <div><b>粉紅色</b>習寫生字</div>
+        <div><b>橙黃色</b>認讀字</div>
+        <div><b>固定三欄</b>國字｜注音｜聲調；聲調在最右欄垂直置中</div>
+      </div>
+
+      <div class="controls">
+        <button class="btn yellow" onclick="speak(${mode==="original"?"ORIGINAL_TEXT":"SIMPLE_TEXT"})">🔊 全文朗讀</button>
+        <button class="btn blue" onclick="useLessonInReader('${mode}')">逐句朗讀／挖空</button>
+        <button class="btn pink" onclick="showView('cards')">下一步：生字圖卡</button>
+      </div>
+    </div>
+  </section>`;
+}
+
+function useLessonInReader(mode){
+  storyLines = (mode==="original" ? ORIGINAL_PARAGRAPHS : SIMPLE_PARAGRAPHS).slice();
+  showView('read');
+  setTimeout(()=>showReadLine(0),0);
+}
+
+function renderCard(i){
+  if(i<0)i=0;
+  if(i>=ALL_WORDS.length)i=ALL_WORDS.length-1;
+  cardIndex=i;
+  const x = ALL_WORDS[i];
+  viewed.add(x.c); updateStatus();
+  const write = x.type==='write';
+  main.innerHTML = `
+  <section class="view active">
+    <div class="card">
+      <div class="progress">
+        <span>${write?'習寫生字':'認讀字'}</span>
+        <div class="dotbar">${ALL_WORDS.map((_,idx)=>`<i class="${idx<i?'done':idx===i?'on':''}"></i>`).join('')}</div>
+        <span>${i+1} / ${ALL_WORDS.length}</span>
+      </div>
+      <div class="word-layout">
+        <div class="big-card">
+          <div class="center">${write?'<span class="pill write">我會寫字</span>':'<span class="pill read">認讀字</span>'}</div>
+          <div class="word-main">${esc(x.c)}</div>
+          <p class="zhuyin">${esc(x.b)}</p>
+          ${write?`
+            <div class="meta">
+              <div class="m"><strong>${esc(x.r)}</strong><small>部首</small></div>
+              <div class="m"><strong>${esc(x.o)}</strong><small>部首外筆畫</small></div>
+              <div class="m"><strong>${esc(x.t)}</strong><small>總筆畫</small></div>
+              <div class="m"><strong style="font-size:16px">${esc(x.p)}</strong><small>部件</small></div>
+            </div>`:`<p class="note center">這個字在課文裡要認得，暫時不用要求寫字。</p>`}
+          <div class="words">${x.w.map(w=>`<span>${esc(w)}</span>`).join('')}</div>
+        </div>
+        <div class="big-card">
+          <div class="center"><span class="pill read">附圖片生字卡</span></div>
+          <div class="illustration">${wordIllustration(x.c)}</div>
+          <p class="note center">用圖像幫助孩子把字、音、意思連在一起。</p>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="btn yellow" onclick="speak('${x.c}，${x.b}。${x.w.join('、')}')">🔊 唸一次</button>
+        <button class="btn ghost" ${i===0?'disabled':''} onclick="renderCard(${i-1})">← 上一張</button>
+        <button class="btn ghost" ${i===ALL_WORDS.length-1?'disabled':''} onclick="renderCard(${i+1})">下一張 →</button>
+        <button class="btn blue" onclick="showView('gallery')">看全部圖卡</button>
+      </div>
+    </div>
+  </section>`;
+}
+
+function renderGallery(){
+  main.innerHTML = `
+  <section class="view active">
+    <div class="card">
+      <span class="label">圖卡總覽</span>
+      <h2>🖼️ 附圖片的生字卡</h2>
+      <p class="note">可以投影整頁，也可以讓學生自由點選，進入單張大卡模式。</p>
+      <div class="vocab-grid">
+        ${ALL_WORDS.map((x,idx)=>`
+          <div class="vocab" onclick="renderCard(${idx})" role="button" tabindex="0">
+            <div class="pic">${smallIllustration(x.c)}</div>
+            <div class="info">
+              <div class="char">${esc(x.c)}</div>
+              <div class="bp">${esc(x.b)}</div>
+              <div class="word">${esc(x.w[0])}</div>
+              <div class="tag">${x.type==='write'?'習寫生字':'認讀字'}</div>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>
+  </section>`;
+}
+
+function renderRead(){
+  main.innerHTML = `
+  <section class="view active">
+    <div class="card">
+      <span class="label">朗讀室</span>
+      <h2>🔊 一句一句讀課文</h2>
+      <p class="note">現在已經內建授權使用的課文，也可以直接切換成簡化版。每次只顯示一句，適合個別教學。</p>
+      <div class="lesson-switch">
+        <button onclick="loadReaderText('original')">📖 載入課本原文</button>
+        <button onclick="loadReaderText('simple')">🌱 載入簡化版</button>
+      </div>
+      <div class="reading-box">
+        <textarea id="txt">${storyLines.join('\n')}</textarea>
+        <div class="controls">
+          <button class="btn blue" onclick="applyStory()">開始逐句朗讀</button>
+          <button class="btn yellow" onclick="showReadLine(0)">用目前內容練習</button>
+        </div>
+      </div>
+    </div>
+    <div id="storyArea"></div>
+  </section>`;
+}
+
+function loadReaderText(mode){
+  storyLines = (mode==="original" ? ORIGINAL_PARAGRAPHS : SIMPLE_PARAGRAPHS).slice();
+  document.getElementById('txt').value = storyLines.join('\n');
+}
+
+function applyStory(){
+  const raw=document.getElementById('txt').value.trim();
+  storyLines = raw.split(/\n+/).map(s=>s.trim()).filter(Boolean);
+  if(!storyLines.length) storyLines=["老師在教室裡點名。"];
+  showReadLine(0);
+}
+function showReadLine(i){
+  if(i<0)i=0;
+  if(i>=storyLines.length)i=storyLines.length-1;
+  const s=storyLines[i];
+  const html=[...s].map(ch=>{
+    const cls = KEYSET.has(ch)?'key':BPMAP[ch]?'read':'';
+    return `<span class="${cls}" data-ch="${esc(ch)}">${esc(ch)}</span>`;
+  }).join('');
+  document.getElementById('storyArea').innerHTML = `
+    <div class="card">
+      <div class="progress">
+        <span>逐句朗讀</span>
+        <div class="dotbar">${storyLines.map((_,idx)=>`<i class="${idx<i?'done':idx===i?'on':''}"></i>`).join('')}</div>
+        <span>${i+1} / ${storyLines.length}</span>
+      </div>
+      <div class="story-line">${html}</div>
+      <p class="note center" id="charInfo">點一個字，看看注音。</p>
+      <div class="controls">
+        <button class="btn ghost" ${i===0?'disabled':''} onclick="showReadLine(${i-1})">← 上一句</button>
+        <button class="btn yellow" onclick="speakLine(${i})">🔊 唸這一句</button>
+        <button class="btn ghost" ${i===storyLines.length-1?'disabled':''} onclick="showReadLine(${i+1})">下一句 →</button>
+      </div>
+    </div>`;
+  speak(s);
+}
+function speakLine(i){
+  speak(storyLines[i]);
+}
+function showChar(ch,el){
+  document.querySelectorAll('.story-line span').forEach(x=>x.classList.remove('sel'));
+  el.classList.add('sel');
+  document.getElementById('charInfo').textContent = BPMAP[ch] ? `${ch}　${BPMAP[ch]}` : `${ch}`;
+  speak(ch);
+}
+
+function renderIdiom(i){
+  if(i<0)i=0;
+  if(i>=IDIOMS.length)i=IDIOMS.length-1;
+  idiomIndex=i;
+  const x=IDIOMS[i];
+  main.innerHTML = `
+  <section class="view active">
+    <div class="card">
+      <div class="progress">
+        <span>詞語理解</span>
+        <div class="dotbar">${IDIOMS.map((_,idx)=>`<i class="${idx<i?'done':idx===i?'on':''}"></i>`).join('')}</div>
+        <span>${i+1} / ${IDIOMS.length}</span>
+      </div>
+      <h2 style="text-align:center;font-family:var(--kai);font-size:48px;letter-spacing:6px;color:#8b5a62">${esc(x.w)}</h2>
+      <p class="zhuyin">${esc(x.b)}</p>
+      <div class="card" style="background:#fffdf8">
+        <h3>意思</h3>
+        <p class="note" style="font-size:18px;color:#4e473f">${esc(x.mean)}</p>
+        <h3>生活例子</h3>
+        <p class="note" style="font-size:18px;color:#4e473f">${esc(x.scene)}</p>
+      </div>
+      <div class="controls">
+        <button class="btn yellow" onclick="speak('${x.w}。${x.mean}。${x.scene}')">🔊 唸給我聽</button>
+        <button class="btn ghost" ${i===0?'disabled':''} onclick="renderIdiom(${i-1})">← 上一個</button>
+        <button class="btn ghost" ${i===IDIOMS.length-1?'disabled':''} onclick="renderIdiom(${i+1})">下一個 →</button>
+      </div>
+    </div>
+  </section>`;
+}
+
+function startQuiz(){
+  quizIndex=0; quizScore=0;
+  nextQuiz();
+}
+function sample(arr){return arr[Math.floor(Math.random()*arr.length)]}
+function shuffle(a){return a.map(x=>[Math.random(),x]).sort((a,b)=>a[0]-b[0]).map(x=>x[1])}
+function nextQuiz(){
+  if(quizIndex>=quizTotal){
+    main.innerHTML = `
+    <section class="view active">
+      <div class="card center">
+        <span class="label">小挑戰完成</span>
+        <h2>🎉 完成了！</h2>
+        <p class="note" style="font-size:22px">你答對了 <b>${quizScore}</b> / ${quizTotal} 題</p>
+        <div class="controls">
+          <button class="btn blue" onclick="startQuiz()">再玩一次</button>
+          <button class="btn pink" onclick="showView('gallery')">回生字圖卡</button>
+        </div>
+      </div>
+    </section>`;
+    speak(`小挑戰完成，你答對了 ${quizScore} 題。`);
+    return;
+  }
+
+  const mode = Math.random()<0.65 ? 'bp' : 'word';
+  const pool = ALL_WORDS;
+  const ans = sample(pool);
+  const opts = shuffle([ans, ...shuffle(pool.filter(x=>x.c!==ans.c)).slice(0,3)]);
+
+  main.innerHTML = `
+  <section class="view active">
+    <div class="card">
+      <div class="progress">
+        <span>小挑戰</span>
+        <div class="dotbar">${Array.from({length:quizTotal},(_,idx)=>`<i class="${idx<quizIndex?'done':idx===quizIndex?'on':''}"></i>`).join('')}</div>
+        <span>${quizIndex+1} / ${quizTotal}</span>
+      </div>
+      <div class="quiz-q">${mode==='bp' ? `哪一個字念作「${ans.b}」？` : `哪一個語詞和「${ans.c}」有關？`}</div>
+      <div class="opts" id="opts">
+        ${opts.map(x=>`
+          <button class="opt" onclick="gradeQuiz(this,'${x.c}','${ans.c}','${mode}')">
+            ${mode==='bp' ? `<span style="font-size:44px">${x.c}</span>` : `${x.w[0]}`}
+          </button>
+        `).join('')}
+      </div>
+      <div class="feedback" id="fb"></div>
+    </div>
+  </section>`;
+}
+function gradeQuiz(btn,pick,ans,mode){
+  const ok = pick===ans;
+  const fb=document.getElementById('fb');
+  document.querySelectorAll('#opts .opt').forEach(el=>el.disabled=true);
+  if(ok){
+    btn.classList.add('right');
+    fb.className='feedback show ok';
+    fb.innerHTML='✅ 答對了！';
+    quizScore++;
+    reward(true);
+  }else{
+    btn.classList.add('wrong');
+    fb.className='feedback show no';
+    const right = ALL_WORDS.find(x=>x.c===ans);
+    fb.innerHTML=`❗ 再記一次：${right.c} 的注音是 ${right.b}，相關語詞有「${right.w[0]}」。`;
+    reward(false);
+  }
+  quizIndex++;
+  setTimeout(nextQuiz,1000);
+}
+
+function introScene(){
+  return `
+  <svg viewBox="0 0 460 220">
+    <rect x="0" y="0" width="460" height="220" rx="20" fill="#fffdfa"/>
+    <rect x="0" y="160" width="460" height="60" fill="#eef9ff"/>
+    <rect x="62" y="42" width="110" height="82" rx="10" fill="#a8dcff" stroke="#6db8ef" stroke-width="4"/>
+    <line x1="117" y1="42" x2="117" y2="124" stroke="#6db8ef" stroke-width="4"/>
+    <line x1="62" y1="83" x2="172" y2="83" stroke="#6db8ef" stroke-width="4"/>
+    <rect x="250" y="45" width="120" height="74" rx="10" fill="#4f5f6c"/>
+    <rect x="258" y="53" width="104" height="58" rx="6" fill="#31424f"/>
+    <text x="310" y="91" text-anchor="middle" font-size="24" font-family="DFKai-SB, KaiTi, serif" fill="#fff">點名</text>
+    <circle cx="230" cy="150" r="24" fill="#ffe69b" stroke="#f4c957" stroke-width="4"/>
+    <path d="M230 129 L236 142 L250 144 L239 153 L242 167 L230 160 L218 167 L221 153 L210 144 L224 142 Z" fill="#fff8e6"/>
+    <circle cx="124" cy="145" r="20" fill="#ffdce5"/>
+    <circle cx="171" cy="145" r="20" fill="#ffdce5"/>
+    <circle cx="311" cy="145" r="20" fill="#dff7ea"/>
+    <circle cx="358" cy="145" r="20" fill="#dff7ea"/>
+  </svg>`;
+}
+
+function smallIllustration(ch){ return wordIllustration(ch); }
+
+// 提升為模組層級常數，避免每次呼叫 wordIllustration() 都重建一次整份 SVG 對照表
+const WORD_ILLUSTRATIONS = {
+    "窗":`<svg viewBox="0 0 260 160"><rect x="25" y="18" width="210" height="124" rx="16" fill="#a8dcff" stroke="#6db8ef" stroke-width="5"/><line x1="130" y1="18" x2="130" y2="142" stroke="#6db8ef" stroke-width="5"/><line x1="25" y1="80" x2="235" y2="80" stroke="#6db8ef" stroke-width="5"/><circle cx="66" cy="49" r="13" fill="#fff"/><path d="M54 110 q16-22 32 0 q16-22 32 0 q16-22 32 0" fill="none" stroke="#62c08f" stroke-width="6" stroke-linecap="round"/></svg>`,
+    "戶":`<svg viewBox="0 0 260 160"><rect x="55" y="24" width="150" height="116" rx="10" fill="#9c6747"/><rect x="76" y="42" width="110" height="98" rx="8" fill="#b67a56"/><circle cx="164" cy="92" r="5" fill="#ffd27e"/></svg>`,
+    "名":`<svg viewBox="0 0 260 160"><rect x="48" y="36" width="164" height="88" rx="16" fill="#ffe59a" stroke="#f4c957" stroke-width="5"/><circle cx="78" cy="80" r="18" fill="#ffb7c5"/><text x="132" y="88" font-size="30" font-family="PingFang TC, sans-serif" text-anchor="middle" fill="#6e5841">我的名字</text></svg>`,
+    "板":`<svg viewBox="0 0 260 160"><rect x="40" y="26" width="180" height="108" rx="10" fill="#4e5d67" stroke="#394852" stroke-width="5"/><line x1="40" y1="126" x2="20" y2="150" stroke="#9c6747" stroke-width="7"/><line x1="220" y1="126" x2="240" y2="150" stroke="#9c6747" stroke-width="7"/><text x="130" y="88" font-size="28" font-family="DFKai-SB, KaiTi, serif" text-anchor="middle" fill="#fff">黑板</text></svg>`,
+    "答":`<svg viewBox="0 0 260 160"><rect x="42" y="38" width="120" height="74" rx="18" fill="#dff7ea" stroke="#62c08f" stroke-width="5"/><polygon points="88,112 104,133 114,111" fill="#dff7ea" stroke="#62c08f" stroke-width="5"/><text x="102" y="83" font-size="28" text-anchor="middle" fill="#4f6b57">答</text><rect x="172" y="54" width="42" height="56" rx="8" fill="#ffe59a"/><rect x="178" y="66" width="30" height="8" rx="4" fill="#f4c957"/><rect x="178" y="82" width="24" height="8" rx="4" fill="#f4c957"/></svg>`,
+    "案":`<svg viewBox="0 0 260 160"><rect x="48" y="54" width="164" height="78" rx="12" fill="#caa27b"/><rect x="62" y="32" width="136" height="34" rx="8" fill="#b28a64"/><rect x="82" y="76" width="96" height="36" rx="8" fill="#fff"/><text x="130" y="99" font-size="20" text-anchor="middle" fill="#7a6651">方案</text></svg>`,
+    "專":`<svg viewBox="0 0 260 160"><circle cx="94" cy="88" r="38" fill="#fff7f8" stroke="#ffc9d5" stroke-width="5"/><circle cx="82" cy="82" r="5" fill="#695b50"/><circle cx="106" cy="82" r="5" fill="#695b50"/><path d="M82 100 q12 10 24 0" fill="none" stroke="#a3757f" stroke-width="4" stroke-linecap="round"/><rect x="140" y="46" width="74" height="84" rx="10" fill="#a8dcff" stroke="#6db8ef" stroke-width="5"/><line x1="151" y1="64" x2="200" y2="64" stroke="#fff" stroke-width="5"/><line x1="151" y1="82" x2="195" y2="82" stroke="#fff" stroke-width="5"/><line x1="151" y1="100" x2="187" y2="100" stroke="#fff" stroke-width="5"/></svg>`,
+    "穫":`<svg viewBox="0 0 260 160"><rect x="0" y="118" width="260" height="42" fill="#ddf6ea"/><path d="M76 126 v-62" stroke="#62c08f" stroke-width="6"/><path d="M76 70 q-16 10 0 20 q16-10 0-20" fill="#ffe59a"/><path d="M104 126 v-74" stroke="#62c08f" stroke-width="6"/><path d="M104 58 q-16 10 0 20 q16-10 0-20" fill="#ffe59a"/><path d="M132 126 v-82" stroke="#62c08f" stroke-width="6"/><path d="M132 50 q-16 10 0 20 q16-10 0-20" fill="#ffe59a"/><rect x="160" y="92" width="52" height="34" rx="8" fill="#c68d59"/><rect x="168" y="98" width="36" height="18" rx="6" fill="#e7c08a"/></svg>`,
+    "賽":`<svg viewBox="0 0 260 160"><rect x="28" y="112" width="204" height="14" rx="7" fill="#d0dbe2"/><line x1="74" y1="42" x2="74" y2="112" stroke="#ff8fa8" stroke-width="8"/><circle cx="74" cy="36" r="12" fill="#ffcfdb"/><line x1="158" y1="50" x2="158" y2="112" stroke="#6db8ef" stroke-width="8"/><circle cx="158" cy="44" r="12" fill="#ccecff"/><path d="M74 64 h84" stroke="#9cb1c2" stroke-dasharray="8 6" stroke-width="4"/><text x="130" y="98" text-anchor="middle" font-size="18" fill="#697780">比賽</text></svg>`,
+    "已":`<svg viewBox="0 0 260 160"><circle cx="130" cy="80" r="52" fill="#fff5d6" stroke="#f4c957" stroke-width="5"/><path d="M102 82 l18 18 l38-40" fill="none" stroke="#62c08f" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    "傘":`<svg viewBox="0 0 260 160"><path d="M50 78 q80-66 160 0" fill="#a8dcff" stroke="#6db8ef" stroke-width="5"/><path d="M50 78 q20 20 40 0 q20 20 40 0 q20 20 40 0 q20 20 40 0" fill="#8fd3ff"/><line x1="130" y1="78" x2="130" y2="136" stroke="#9c6747" stroke-width="6" stroke-linecap="round"/><path d="M130 136 q0 16 14 16" fill="none" stroke="#9c6747" stroke-width="6" stroke-linecap="round"/></svg>`,
+    "似":`<svg viewBox="0 0 260 160"><circle cx="92" cy="80" r="34" fill="#ffe6a8" stroke="#f4c957" stroke-width="5"/><circle cx="170" cy="80" r="34" fill="#ffe6a8" stroke="#f4c957" stroke-width="5"/><circle cx="82" cy="74" r="4" fill="#6d5f53"/><circle cx="102" cy="74" r="4" fill="#6d5f53"/><circle cx="160" cy="74" r="4" fill="#6d5f53"/><circle cx="180" cy="74" r="4" fill="#6d5f53"/><path d="M82 92 q10 8 20 0" fill="none" stroke="#9c6a76" stroke-width="3"/><path d="M160 92 q10 8 20 0" fill="none" stroke="#9c6a76" stroke-width="3"/></svg>`,
+    "追":`<svg viewBox="0 0 260 160"><circle cx="78" cy="88" r="18" fill="#ffd9a1"/><circle cx="130" cy="72" r="16" fill="#ffd9a1"/><path d="M78 110 q34 -46 52 -20" fill="none" stroke="#62c08f" stroke-width="7" stroke-linecap="round"/><path d="M128 56 l24 0" stroke="#ff8fa8" stroke-width="8" stroke-linecap="round"/><path d="M166 62 l26 -18" fill="none" stroke="#6db8ef" stroke-width="6" stroke-linecap="round"/><path d="M184 38 l12 8 l-2 13" fill="none" stroke="#6db8ef" stroke-width="6" stroke-linecap="round"/></svg>`,
+    "喊":`<svg viewBox="0 0 260 160"><circle cx="88" cy="84" r="40" fill="#fff7f8" stroke="#ffc9d5" stroke-width="5"/><path d="M84 95 q10 16 22 0" fill="none" stroke="#d46887" stroke-width="5" stroke-linecap="round"/><path d="M145 70 q34 0 34 24 q0 24 -34 24" fill="none" stroke="#6db8ef" stroke-width="8" stroke-linecap="round"/><path d="M192 58 q18 16 18 36 q0 20 -18 36" fill="none" stroke="#a8dcff" stroke-width="8" stroke-linecap="round"/></svg>`,
+    "歪":`<svg viewBox="0 0 260 160"><rect x="54" y="54" width="70" height="70" rx="10" fill="#ffe59a" transform="rotate(-18 89 89)"/><path d="M154 104 l38 -38" stroke="#ff8fa8" stroke-width="10" stroke-linecap="round"/><path d="M176 66 l20 0 l0 20" fill="none" stroke="#ff8fa8" stroke-width="8" stroke-linecap="round"/></svg>`,
+    "霧":`<svg viewBox="0 0 260 160"><circle cx="86" cy="68" r="24" fill="#dfeef8"/><circle cx="110" cy="60" r="28" fill="#e8f4fb"/><circle cx="138" cy="70" r="22" fill="#dfeef8"/><rect x="68" y="70" width="96" height="28" rx="14" fill="#e8f4fb"/><line x1="70" y1="118" x2="190" y2="118" stroke="#bed7ea" stroke-width="7" stroke-linecap="round"/><line x1="90" y1="136" x2="180" y2="136" stroke="#bed7ea" stroke-width="7" stroke-linecap="round"/></svg>`,
+    "晃":`<svg viewBox="0 0 260 160"><circle cx="130" cy="72" r="36" fill="#ffe59a" stroke="#f4c957" stroke-width="5"/><path d="M84 128 q46-24 92 0" fill="none" stroke="#6db8ef" stroke-width="7" stroke-linecap="round"/><path d="M74 52 q-18 18 0 36" fill="none" stroke="#a8dcff" stroke-width="6"/><path d="M186 52 q18 18 0 36" fill="none" stroke="#a8dcff" stroke-width="6"/></svg>`,
+    "亂":`<svg viewBox="0 0 260 160"><rect x="50" y="46" width="44" height="44" rx="10" fill="#ffb7c5"/><rect x="114" y="34" width="50" height="50" rx="10" fill="#a8dcff"/><rect x="158" y="84" width="44" height="44" rx="10" fill="#b8efd8"/><path d="M76 118 l24 18" stroke="#9c6747" stroke-width="6" stroke-linecap="round"/><path d="M120 112 l-18 24" stroke="#9c6747" stroke-width="6" stroke-linecap="round"/></svg>`
+};
+
+function wordIllustration(ch){
+  return WORD_ILLUSTRATIONS[ch] || `<svg viewBox="0 0 260 160"><rect x="35" y="24" width="190" height="112" rx="20" fill="#f7fbff" stroke="#d8e9f6" stroke-width="4"/><text x="130" y="98" text-anchor="middle" font-size="72" font-family="DFKai-SB, KaiTi, serif" fill="#7b5740">${esc(ch)}</text></svg>`;
+}
+
+updateStatus();
+renderHome();
+</script>
+</body>
+</html>
